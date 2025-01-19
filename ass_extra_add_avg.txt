@@ -1,0 +1,122 @@
+Enter password: **********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 28
+Server version: 8.0.34 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> DELIMITER //
+mysql> CREATE PROCEDURE AddNumbers(IN num1 INT, IN num2 INT)
+    -> BEGIN
+    ->     SELECT num1 + num2 AS sum;
+    -> END //
+ERROR 1046 (3D000): No database selected
+mysql> DELIMITER ;
+mysql> slect shreya;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'slect shreya' at line 1
+mysql> select shreya;
+ERROR 1054 (42S22): Unknown column 'shreya' in 'field list'
+mysql> select shreya
+    -> ;
+ERROR 1054 (42S22): Unknown column 'shreya' in 'field list'
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| company            |
+| dml                |
+| information_schema |
+| mysql              |
+| performance_schema |
+| shreya             |
+| sys                |
+| try                |
++--------------------+
+8 rows in set (0.02 sec)
+
+mysql> use shreya;
+Database changed
+mysql> DELIMITER //
+mysql> CREATE PROCEDURE AddNumbers(IN num1 INT, IN num2 INT)
+    -> BEGIN
+    ->     SELECT num1 + num2 AS sum;
+    -> END //
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> DELIMITER ;
+mysql> create procedure addnumbers(in num1 int , in num2 int)
+    -> begin
+    -> select num1 + num2 as sum;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 3
+mysql> create function stores.square(val int)
+    -> returns int
+    -> deterministic
+    -> begin
+    -> DECLARE result INT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 5
+mysql>  create function stores.square(val int)
+    ->     -> returns int
+    ->     -> deterministic
+    ->     -> begin
+    ->     -> DECLARE result INT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-> returns int
+    -> deterministic
+    -> begin
+    -> DECLARE result INT' at line 2
+mysql>  create function stores.square(val int)
+    ->     -> returns int
+    ->     -> deterministic
+    ->     -> begin
+    ->     -> DECLARE result INT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-> returns int
+    -> deterministic
+    -> begin
+    -> DECLARE result INT' at line 2
+mysql> DELIMITER //
+mysql> create function stores.avgg(val1 int,val2 int)
+    -> returns int
+    -> DETERMINISTIC
+    -> BEGIN
+    -> DECLARE answer int;
+    -> SET answer=0;
+    -> SET answer=val1+val2;
+    -> return answer;
+    -> END
+    -> //
+ERROR 1049 (42000): Unknown database 'stores'
+mysql> create function stores.avgg(val1 int,val2 int)
+    ->     -> returns int
+    ->     -> DETERMINISTIC
+    ->     -> BEGIN
+    ->     -> DECLARE answer int;
+    ->     -> SET answer=0;
+    ->     -> SET answer=val1+val2;
+    ->     -> return answer;
+    ->     -> END
+    ->     -> return answer;
+    -> //
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-> returns int
+    -> DETERMINISTIC
+    -> BEGIN
+    -> DECLARE answer int;
+    ' at line 2
+mysql> DELIMITER //
+mysql> create function dml.avgg(val1 int , val2 int)
+    -> returns int
+    -> DETERMINISTIC
+    -> BEGIN
+    -> DECLARE answer int;
+    -> SET answer=0;
+    -> SET answer=val1+val2;
+    -> return answer;
+    -> END
+    -> //
+Query OK, 0 rows affected (0.01 sec)
+
+mysql>
