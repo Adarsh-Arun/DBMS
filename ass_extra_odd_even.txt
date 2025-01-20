@@ -1,0 +1,110 @@
+Enter password: **********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 29
+Server version: 8.0.34 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| company            |
+| dml                |
+| information_schema |
+| mysql              |
+| performance_schema |
+| shreya             |
+| sys                |
+| try                |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> use dml;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_dml |
++---------------+
+| cars          |
+| emloye        |
+| employe       |
+| employee      |
+| harshita      |
+| hospital      |
+| sales         |
++---------------+
+7 rows in set (0.01 sec)
+
+mysql> create table odd(numbers int);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into odd(number) values(15);
+ERROR 1054 (42S22): Unknown column 'number' in 'field list'
+mysql> insert into odd(numbers) values(15);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into odd(numbers) values(17);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into odd(numbers) values(54);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into odd(numbers) values(75);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into odd(numbers) values(14);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into odd(numbers) values(96);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into odd(numbers) values(36);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from odd;
++---------+
+| numbers |
++---------+
+|      15 |
+|      17 |
+|      54 |
+|      75 |
+|      14 |
+|      96 |
+|      36 |
++---------+
+7 rows in set (0.00 sec)
+
+mysql> select *
+    -> from odd
+    -> WHERE mod(numbers,2)=0;
++---------+
+| numbers |
++---------+
+|      54 |
+|      14 |
+|      96 |
+|      36 |
++---------+
+4 rows in set (0.00 sec)
+
+mysql> select *
+    -> from odd
+    -> WHERE mod(numbers,2)<>0;
++---------+
+| numbers |
++---------+
+|      15 |
+|      17 |
+|      75 |
++---------+
+3 rows in set (0.00 sec)
+
+mysql>
