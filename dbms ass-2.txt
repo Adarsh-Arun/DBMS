@@ -1,0 +1,164 @@
+mysql> create table carss(index_no int,cars_name varchar(10), cars_id varchar(10),top_speed int);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select * from carss;
+Empty set (0.00 sec)
+
+mysql> desc carss;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| index_no  | int         | YES  |     | NULL    |       |
+| cars_name | varchar(10) | YES  |     | NULL    |       |
+| cars_id   | varchar(10) | YES  |     | NULL    |       |
+| top_speed | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into cars(index_no,cars_name,cars_id,top_speed) values(1,'pagani','194987',365);
+ERROR 1054 (42S22): Unknown column 'index_no' in 'field list'
+mysql> insert into cars(index_no,cars_name,cars_id,top_speed) values('1','pagani','194987',365);
+ERROR 1054 (42S22): Unknown column 'index_no' in 'field list'
+mysql> insert into carss(index_no,cars_name,cars_id,top_speed) values(1,'pagani','194987',365);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into cars(index_no,cars_name,cars_id,top_speed) values(2,'maserati','183804',480);
+ERROR 1054 (42S22): Unknown column 'index_no' in 'field list'
+mysql> insert into carss(index_no,cars_name,cars_id,top_speed) values(2,'maserati','183804',480);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into carss(index_no,cars_name,cars_id,top_speed) values(3,'bmw','180459',268);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from carss;
++----------+-----------+---------+-----------+
+| index_no | cars_name | cars_id | top_speed |
++----------+-----------+---------+-----------+
+|        1 | pagani    | 194987  |       365 |
+|        2 | maserati  | 183804  |       480 |
+|        3 | bmw       | 180459  |       268 |
++----------+-----------+---------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| dml                |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use carss;
+ERROR 1049 (42000): Unknown database 'carss'
+mysql> use cars;
+ERROR 1049 (42000): Unknown database 'cars'
+mysql> use dml;'
+Database changed
+    '> h
+    '> select * from cars;
+    '> use dml;
+    '> '
+    -> '
+    '> '
+    -> select * from cars;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''
+h
+select * from cars;
+use dml;
+'
+'
+'
+select * from cars' at line 1
+mysql> decs carss;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'decs carss' at line 1
+mysql> desc carss;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| index_no  | int         | YES  |     | NULL    |       |
+| cars_name | varchar(10) | YES  |     | NULL    |       |
+| cars_id   | varchar(10) | YES  |     | NULL    |       |
+| top_speed | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table carss add (type varchar(10));
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from carss;
++----------+-----------+---------+-----------+------+
+| index_no | cars_name | cars_id | top_speed | type |
++----------+-----------+---------+-----------+------+
+|        1 | pagani    | 194987  |       365 | NULL |
+|        2 | maserati  | 183804  |       480 | NULL |
+|        3 | bmw       | 180459  |       268 | NULL |
++----------+-----------+---------+-----------+------+
+3 rows in set (0.00 sec)
+
+mysql> alter table carss drop column type;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from carss;
++----------+-----------+---------+-----------+
+| index_no | cars_name | cars_id | top_speed |
++----------+-----------+---------+-----------+
+|        1 | pagani    | 194987  |       365 |
+|        2 | maserati  | 183804  |       480 |
+|        3 | bmw       | 180459  |       268 |
++----------+-----------+---------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> alter table carss rename cars1;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc cars1;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| index_no  | int         | YES  |     | NULL    |       |
+| cars_name | varchar(10) | YES  |     | NULL    |       |
+| cars_id   | varchar(10) | YES  |     | NULL    |       |
+| top_speed | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table cars1 rename column top_speed to speed;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from cars1;
++----------+-----------+---------+-------+
+| index_no | cars_name | cars_id | speed |
++----------+-----------+---------+-------+
+|        1 | pagani    | 194987  |   365 |
+|        2 | maserati  | 183804  |   480 |
+|        3 | bmw       | 180459  |   268 |
++----------+-----------+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table cars1 drop column speed;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from cars1;
++----------+-----------+---------+
+| index_no | cars_name | cars_id |
++----------+-----------+---------+
+|        1 | pagani    | 194987  |
+|        2 | maserati  | 183804  |
+|        3 | bmw       | 180459  |
++----------+-----------+---------+
+3 rows in set (0.00 sec)
+
+mysql> drop table cars1;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> truncate table cars1;
+ERROR 1146 (42S02): Table 'dml.cars1' doesn't exist
+mysql>
