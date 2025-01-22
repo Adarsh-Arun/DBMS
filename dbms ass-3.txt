@@ -1,0 +1,136 @@
+mysql> create table hospital(index_no int,patient_name varchar(10),patient_id int,patient_no varchar(
+10),patient_email varchar(20));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc hospital;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| index_no      | int         | YES  |     | NULL    |       |
+| patient_name  | varchar(10) | YES  |     | NULL    |       |
+| patient_id    | int         | YES  |     | NULL    |       |
+| patient_no    | varchar(10) | YES  |     | NULL    |       |
+| patient_email | varchar(20) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into hospital(index_no int,patient_name varchar(10),patient_id int,patient_no varchar(
+    ->
+    -> desc hospital;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'int,patient_name varchar(10),patient_id int,patient_no varchar(
+
+desc hospital' at line 1
+mysql>  insert into hospital(index_no,patient_name,patient_id,patient_no,patient_email) values(1,'harsh',87734,'9598756342',hrsh46@gmail.com
+    -> )
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@gmail.com
+)' at line 1
+mysql> insert into hospital(index_no,patient_name,patient_id,patient_no,patient_email) values(1,'harsh',87734,'9598756342',hrsh46@gmail.com);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@gmail.com)' at line 1
+mysql> insert into hospital(index_no,patient_name,patient_id,patient_no,patient_email) values(1,'harsh',87734,'9598756342','hrsh46@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into hospital(index_no,patient_name,patient_id,patient_no,patient_email) values(2,'nikhil',24806,'8598753578','nikhil96@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into hospital(index_no,patient_name,patient_id,patient_no,patient_email) values(3\,'deep',96258,'7357230965','deep09@gmail.com');
+ERROR:
+Unknown command '\,'.
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '\,'deep',96258,'7357230965','deep09@gmail.com')' at line 1
+mysql> insert into hospital(index_no,patient_name,patient_id,patient_no,patient_email) values(3,'deep',96258,'7357230965','deep09@gmail.com');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into hospital(index_no,patient_name,patient_id,patient_no,patient_email) values(4,'veet',97468,'6045769827','veet689@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into hospital(index_no,patient_name,patient_id,patient_no,patient_email) values(5,'aditya',68985,'9873450912','kasar76@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from hospital;
++----------+--------------+------------+------------+--------------------+
+| index_no | patient_name | patient_id | patient_no | patient_email      |
++----------+--------------+------------+------------+--------------------+
+|        1 | harsh        |      87734 | 9598756342 | hrsh46@gmail.com   |
+|        2 | nikhil       |      24806 | 8598753578 | nikhil96@gmail.com |
+|        3 | deep         |      96258 | 7357230965 | deep09@gmail.com   |
+|        4 | veet         |      97468 | 6045769827 | veet689@gmail.com  |
+|        5 | aditya       |      68985 | 9873450912 | kasar76@gmail.com  |
++----------+--------------+------------+------------+--------------------+
+5 rows in set (0.00 sec)
+
+mysql> update hospital set patient_name='adarsh' where index_no=2;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from hospital;
++----------+--------------+------------+------------+--------------------+
+| index_no | patient_name | patient_id | patient_no | patient_email      |
++----------+--------------+------------+------------+--------------------+
+|        1 | harsh        |      87734 | 9598756342 | hrsh46@gmail.com   |
+|        2 | adarsh       |      24806 | 8598753578 | nikhil96@gmail.com |
+|        3 | deep         |      96258 | 7357230965 | deep09@gmail.com   |
+|        4 | veet         |      97468 | 6045769827 | veet689@gmail.com  |
+|        5 | aditya       |      68985 | 9873450912 | kasar76@gmail.com  |
++----------+--------------+------------+------------+--------------------+
+5 rows in set (0.00 sec)
+
+mysql>  update hospital set patient_name='aamish' where index_no=4;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from hospital;
++----------+--------------+------------+------------+--------------------+
+| index_no | patient_name | patient_id | patient_no | patient_email      |
++----------+--------------+------------+------------+--------------------+
+|        1 | harsh        |      87734 | 9598756342 | hrsh46@gmail.com   |
+|        2 | adarsh       |      24806 | 8598753578 | nikhil96@gmail.com |
+|        3 | deep         |      96258 | 7357230965 | deep09@gmail.com   |
+|        4 | aamish       |      97468 | 6045769827 | veet689@gmail.com  |
+|        5 | aditya       |      68985 | 9873450912 | kasar76@gmail.com  |
++----------+--------------+------------+------------+--------------------+
+5 rows in set (0.00 sec)
+
+mysql> update hospital set patient_id='56098' where index_no=3;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql>  select * from hospital;
++----------+--------------+------------+------------+--------------------+
+| index_no | patient_name | patient_id | patient_no | patient_email      |
++----------+--------------+------------+------------+--------------------+
+|        1 | harsh        |      87734 | 9598756342 | hrsh46@gmail.com   |
+|        2 | adarsh       |      24806 | 8598753578 | nikhil96@gmail.com |
+|        3 | deep         |      56098 | 7357230965 | deep09@gmail.com   |
+|        4 | aamish       |      97468 | 6045769827 | veet689@gmail.com  |
+|        5 | aditya       |      68985 | 9873450912 | kasar76@gmail.com  |
++----------+--------------+------------+------------+--------------------+
+5 rows in set (0.00 sec)
+
+mysql>  delete from hospital where index_no= 4;
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  select * from hospital;
++----------+--------------+------------+------------+--------------------+
+| index_no | patient_name | patient_id | patient_no | patient_email      |
++----------+--------------+------------+------------+--------------------+
+|        1 | harsh        |      87734 | 9598756342 | hrsh46@gmail.com   |
+|        2 | adarsh       |      24806 | 8598753578 | nikhil96@gmail.com |
+|        3 | deep         |      56098 | 7357230965 | deep09@gmail.com   |
+|        5 | aditya       |      68985 | 9873450912 | kasar76@gmail.com  |
++----------+--------------+------------+------------+--------------------+
+4 rows in set (0.00 sec)
+
+mysql>  delete from hospital where index_no= 2;
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  select * from hospital;
++----------+--------------+------------+------------+-------------------+
+| index_no | patient_name | patient_id | patient_no | patient_email     |
++----------+--------------+------------+------------+-------------------+
+|        1 | harsh        |      87734 | 9598756342 | hrsh46@gmail.com  |
+|        3 | deep         |      56098 | 7357230965 | deep09@gmail.com  |
+|        5 | aditya       |      68985 | 9873450912 | kasar76@gmail.com |
++----------+--------------+------------+------------+-------------------+
+3 rows in set (0.00 sec)
+
+mysql>
