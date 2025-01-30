@@ -1,0 +1,77 @@
+Enter password: **********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 20
+Server version: 8.0.34 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database company;
+Query OK, 1 row affected (0.06 sec)
+
+mysql> use company;
+Database changed
+mysql> create table orders(old int NOT NULL auto_increment PRIMARY KEY , oderdate date , oamount int , cid int , foreign key(cid) references customer(cid));
+ERROR 1824 (HY000): Failed to open the referenced table 'customer'
+mysql> create table customer(cid int NOT NULL PRIMARY KEY, cname varchar(20),cemail varchar(20));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table orders(old int NOT NULL auto_increment PRIMARY KEY , oderdate date , oamount int , cid int , foreign key(cid) references customer(cid));Query OK, 0 rows affected (0.02 sec)
+
+
+mysql> insert into customer(cid , cname , cemail) values(1,'adarsh','abc12@email.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customer(cid , cname , cemail) values(2,'harsh','harsh12@email.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customer(cid , cname , cemail) values(3,'bhawesh','bhawesh12@email.com');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into orders(old , oderdate , oamount,cid) values(1,2023-8-9,1500,1);
+ERROR 1292 (22007): Incorrect date value: '2006' for column 'oderdate' at row 1
+mysql> insert into orders(old , oderdate , oamount,cid) values(1,'2023-8-9',1500,1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders(old , oderdate , oamount,cid) values(2,'2023-8-9',4579,2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders(old , oderdate , oamount,cid) values(3,'2023-8-9',6542,3);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select* from customer;
++-----+---------+---------------------+
+| cid | cname   | cemail              |
++-----+---------+---------------------+
+|   1 | adarsh  | abc12@email.com     |
+|   2 | harsh   | harsh12@email.com   |
+|   3 | bhawesh | bhawesh12@email.com |
++-----+---------+---------------------+
+3 rows in set (0.01 sec)
+
+mysql> select* from orders;
++-----+------------+---------+------+
+| old | oderdate   | oamount | cid  |
++-----+------------+---------+------+
+|   1 | 2023-08-09 |    1500 |    1 |
+|   2 | 2023-08-09 |    4579 |    2 |
+|   3 | 2023-08-09 |    6542 |    3 |
++-----+------------+---------+------+
+3 rows in set (0.00 sec)
+
+mysql> select* from customer,orders where customer.cid=orders.cid;
++-----+---------+---------------------+-----+------------+---------+------+
+| cid | cname   | cemail              | old | oderdate   | oamount | cid  |
++-----+---------+---------------------+-----+------------+---------+------+
+|   1 | adarsh  | abc12@email.com     |   1 | 2023-08-09 |    1500 |    1 |
+|   2 | harsh   | harsh12@email.com   |   2 | 2023-08-09 |    4579 |    2 |
+|   3 | bhawesh | bhawesh12@email.com |   3 | 2023-08-09 |    6542 |    3 |
++-----+---------+---------------------+-----+------------+---------+------+
+3 rows in set (0.01 sec)
+
+mysql>
